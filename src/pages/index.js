@@ -1,75 +1,29 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
-import Layout from "../components/layout"
+import { Link } from "gatsby"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import Layout from "../components/layout"
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
-
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <article key={node.fields.slug}>
-              <header>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </section>
-            </article>
-          )
-        })}
-      </Layout>
-    )
-  }
+const Index = () => {
+  return (
+    <Layout currentPage="index">
+      <SEO title="All posts" />
+      <main className="landing-page">
+        <div className="landing-page--center-section">
+          <h1 className="primary-header">
+            Hi i'm{" "}
+            <span className="secondary-text-color">Francis Pelletier</span>
+          </h1>
+          <h2 className="header">Front-end web developer</h2>
+          <Link
+            to="/portfolio"
+            className="landing-page--portfolio-button primary-button"
+          >
+            Portfolio
+          </Link>
+        </div>
+      </main>
+    </Layout>
+  )
 }
 
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`
+export default Index
