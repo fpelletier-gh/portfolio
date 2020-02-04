@@ -5,6 +5,7 @@ import { Link } from "gatsby"
 const MainNavigation = ({ currentPage, handleSideMenuToggleButton }) => {
   return (
     <nav className="main-navigation">
+      <div className="main-navigation--logo"><Link to='/' className='primary-button'>Francis <span className='secondary-text-color'>Pelletier</span></Link></div>
       <SideMenuToggleButton handleSideMenuToggleButton={handleSideMenuToggleButton}/>
       <ul className="main-navigation--list">
         <li

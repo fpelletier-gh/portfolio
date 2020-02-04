@@ -1,17 +1,29 @@
-$background-overlay: rgba(0, 0, 0, 0.5);
-$primary-btn-color: white;
-$primary-text-color: white;
-$secondary-text-color: #02a3d9;
-$primary-background-color: black;
+$background-overlay: rgba(0, 0, 0, 0);
+$primary-btn-color: #fbfbff;
+$primary-text-color: #fbfbff;
+$secondary-text-color: #f1c40f;
+$primary-background-color: #024e82;
 $primary-font: "Public Sans", Arial, Helvetica, sans-serif;
-$primary-border: 4px solid white;
-$side-menu-background-color: #37383d;
+$primary-border: 4px solid #fbfbff;
+$primary-button-border: 4px solid #f1c40f;
+$side-menu-background-color: #024e82;
 $primary-letter-spacing: 0.1rem;
-$primary-header-font-size: 4rem;
+$primary-header-font-size: 10rem;
 $portfolio-card-height: minmax(475px, 1fr);
 $portfolio-card-width: minmax(475px, 1fr);
-$toggle-btn-line-color: white;
+$toggle-btn-line-color: #fbfbff;
 $portfolio-card-overlay: rgba(0, 0, 0, 0.5);
+$button-border-radius: 10px;
+$overlay-background-color: #024e82d1;
+
+// #20bf55 green
+// #fbfbff white
+// #0b4f6c navy blue
+// #001d4a darker navy blue
+// #757575 grey
+// #eca400 orange
+// #024e82 pantone blue
+// #f1c40f yellow d1
 
 * {
   margin: 0;
@@ -30,9 +42,10 @@ body {
 .background-image {
   width: 100%;
   height: 100%;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: $primary-background-color;
+  //background-position: top center;
+  //background-repeat: no-repeat;
+  //background-size: cover;
   z-index: 10;
 }
 
@@ -57,7 +70,7 @@ body {
 
 .main-navigation {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
   padding: 2rem 1rem;
   z-index: 300;
@@ -109,51 +122,95 @@ body {
 
 .landing-page--center-section {
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
   grid-template-areas:
     "primary-header"
+    "secondary-header"
     "header"
     "portfolio";
-  justify-items: center;
-  align-items: center;
   grid-row-gap: 0.5rem;
   z-index: 20;
 }
 
 .primary-header {
-  grid-area: primary-header;
-  color: white;
+  color: $primary-text-color;
   font-size: $primary-header-font-size;
   letter-spacing: 0.1rem;
-  justify-self: center;
-  text-align: center;
+  align-self: center;
+}
+
+.grid-area-primary-header {
+  grid-area: primary-header;
+  align-self: left;
+}
+
+.grid-area-secondary-header {
+  grid-area: secondary-header;
 }
 
 .header {
   grid-area: header;
-  color: white;
-  font-size: 2rem;
+  color: $primary-text-color;
+  font-size: 5rem;
   letter-spacing: 0.1rem;
-  justify-self: center;
+  align-self: center;
   text-align: center;
 }
 
-.landing-page--portfolio-button {
-  grid-area: portfolio;
-  background-color: transparent;
-  border-radius: 20px;
-  border: $primary-border;
+.hvr-sweep-to-right {
+  border-radius: $button-border-radius;
+  border: $primary-button-border;
+  color: $secondary-text-color;
   padding: 1rem;
-  width: 10rem;
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  width: 15rem;
+  height: 5rem;
+  font-size: 2rem;
   text-align: center;
-  &:hover,
-  &:active {
-    background-color: $secondary-text-color;
-    border-color: $secondary-text-color;
-  }
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $secondary-text-color;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-right:hover,
+.hvr-sweep-to-right:focus,
+.hvr-sweep-to-right:active {
+  color: $primary-background-color;
+}
+
+.hvr-sweep-to-right:hover:before,
+.hvr-sweep-to-right:focus:before,
+.hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
 
 .secondary-text-color {
@@ -307,7 +364,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #008cbad1;
+    background-color: $primary-background-color;
     overflow: hidden;
     width: 100%;
     height: 0;
@@ -374,7 +431,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #008cbad1;
+    background-color: $overlay-background-color;
     overflow: hidden;
     width: 100%;
     height: 0;

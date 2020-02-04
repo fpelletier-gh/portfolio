@@ -9,16 +9,18 @@ const Index = () => {
       <SEO title="All posts" />
       <main className="landing-page">
         <div className="landing-page--center-section">
-          <h1 className="primary-header">
-            Hi i'm{" "}
-            <span className="secondary-text-color">Francis Pelletier</span>
+          <h1 className="primary-header grid-area-primary-header">
+            I <span className="secondary-text-color">Build</span>
           </h1>
-          <h2 className="header">Front-end web developer</h2>
+          <h1 className="primary-header grid-area-secondary-header">
+            And <span className="secondary-text-color">Design</span>
+          </h1>
+          <h2 className="header">Useful Things for the Web</h2>
           <Link
             to="/portfolio"
-            className="landing-page--portfolio-button primary-button"
+            className="primary-button hvr-sweep-to-right"
           >
-            Portfolio
+            My Work
           </Link>
         </div>
       </main>

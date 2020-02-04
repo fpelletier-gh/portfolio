@@ -27,7 +27,7 @@ const Layout = ({ children, currentPage, pageMainHeader }) => {
   }, [sideMenuToggle])
 
   return (
-    <BackgroundSection
+    <div
       className={
         currentPage === "index"
           ? "background-image"
@@ -62,7 +62,7 @@ const Layout = ({ children, currentPage, pageMainHeader }) => {
           <Footer />
         </div>
       )}
-    </BackgroundSection>
+    </div>
   )
 }
 
