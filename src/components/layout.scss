@@ -1,21 +1,31 @@
 $background-overlay: rgba(0, 0, 0, 0);
 $primary-btn-color: #fbfbff;
 $primary-text-color: #fbfbff;
-$secondary-text-color: #f1c40f;
-$primary-background-color: #024e82;
+$secondary-text-color: #1995b0;
+$primary-background-color: #252934;
+$secondary-background-color: #fbfbff;
 $primary-font: "Public Sans", Arial, Helvetica, sans-serif;
-$primary-border: 4px solid #fbfbff;
-$primary-button-border: 4px solid #f1c40f;
-$side-menu-background-color: #024e82;
+$primary-border: 2px solid #fbfbff;
+$secondary-border: 3px solid #252934;
+$primary-button-border: 4px solid #1995b0;
+$side-menu-background-color: #252934;
 $primary-letter-spacing: 0.1rem;
-$primary-header-font-size: 10rem;
+$primary-header-font-size: 5rem;
+$header-font-size: 3rem;
 $portfolio-card-height: minmax(475px, 1fr);
 $portfolio-card-width: minmax(475px, 1fr);
 $toggle-btn-line-color: #fbfbff;
 $portfolio-card-overlay: rgba(0, 0, 0, 0.5);
 $button-border-radius: 10px;
-$overlay-background-color: #024e82d1;
+$card-border-radius: 10px;
+$form-input-border-radius: 10px;
+$form-input-background-color: #1e242c;
+$form-input-text-color: #fbfbff;
+$overlay-background-color: #252934;
+$portfolio-header-title-color: #1e242c;
+$main-navigation-box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
 
+// #252934 dark grey
 // #20bf55 green
 // #fbfbff white
 // #0b4f6c navy blue
@@ -39,9 +49,15 @@ body {
   height: 100%;
 }
 
-.background-image {
+.site-container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 13rem;
+  grid-template-areas:
+    "main-section"
+    "footer";
   background-color: $primary-background-color;
   //background-position: top center;
   //background-repeat: no-repeat;
@@ -57,8 +73,15 @@ body {
   height: 100vh;
 }
 
+.main-section {
+  grid-area: main-section;
+  width: 100%;
+  height: 100%;
+}
+
 .header-container {
   width: 100%;
+  height: 5rem;
   background-color: $background-overlay;
   z-index: 20;
   display: grid;
@@ -68,19 +91,45 @@ body {
   align-items: center;
 }
 
+.show-main-navigation {
+  visibility: visible;
+  transition: all 200ms ease-in;
+  transform: none;
+}
+
+.hide-main-navigation {
+  visibility: hidden;
+  transition: all 200ms ease-out;
+  transform: translate(0, -100%);
+}
+
 .main-navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
   display: flex;
+  flex-wrap: nowrap;
+  background-color: $primary-background-color;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  padding: 2rem 1rem;
+  height: 4rem;
+  padding: 0 1.5rem;
   z-index: 300;
 }
 
+.main-navigation-box-shadow {
+  box-shadow: $main-navigation-box-shadow;
+}
+
 .main-navigation--logo {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   color: $primary-text-color;
-  padding: 0 1.5rem;
-  align-self: flex-end;
+  align-self: center;
+  z-index: 400;
 }
 
 .main-navigation--list {
@@ -92,7 +141,7 @@ body {
 
 .main-navigation--list-item {
   list-style: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0.3rem 0;
   margin: 0 1rem;
   &:hover {
@@ -107,20 +156,23 @@ body {
 .primary-button {
   color: $primary-text-color;
   text-decoration: none;
-  font-weight: bold;
   letter-spacing: $primary-letter-spacing;
 }
 
 .landing-page {
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem 1fr;
+  grid-template-areas:
+    "."
+    "main-section";
   justify-items: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .landing-page--center-section {
+  grid-area: main-section;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
@@ -152,7 +204,7 @@ body {
 .header {
   grid-area: header;
   color: $primary-text-color;
-  font-size: 5rem;
+  font-size: $header-font-size;
   letter-spacing: 0.1rem;
   align-self: center;
   text-align: center;
@@ -225,10 +277,51 @@ body {
 
 .portfolio-container {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 25rem 1fr;
+  grid-template-areas:
+    "portfolio-header"
+    "portfolio-card-container";
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
-  padding: 1rem;
+  background-color: $secondary-background-color;
+  justify-content: center;
+}
+
+.portfolio-header {
+  grid-area: portfolio-header;
+  background-color: $secondary-background-color;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.portfolio-header-title {
+  color: $portfolio-header-title-color;
+  border-bottom: $secondary-border;
+  font-size: 3rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.portfolio-header-subtitle {
+  color: $portfolio-header-title-color;
+  font-size: 1.5rem;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.portfolio-card-container {
+  grid-area: portfolio-card-container;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
 }
 
 .portfolio-image {
@@ -261,7 +354,6 @@ body {
 }
 
 .side-menu {
-  height: 60%;
   background: $side-menu-background-color;
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -269,16 +361,17 @@ body {
   left: 0;
   width: 100%;
   z-index: 200;
-  transform: translateX(+100%);
+  transform: translateY(-100%);
   transition: transform 0.3s ease-out;
 }
 
 .open {
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 .side-menu--list {
   height: 100%;
+  padding: 5rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -327,6 +420,7 @@ body {
 }
 
 .main-section--footer {
+  grid-area: footer;
   background-color: $side-menu-background-color;
   color: $secondary-text-color;
   font-size: 1.4rem;
@@ -338,92 +432,53 @@ body {
 
 .footer-social-media--link {
   padding: 2rem;
+  height: 7rem;
 }
 
 .footer-copywright-text {
   padding: 1rem;
+  letter-spacing: 1px;
 }
 
-@media (max-width: 650px) {
+.social-media-icon {
+  height: 100%;
+  width: auto;
+  border-radius: 11px;
+  margin: 0 0.8rem;
+}
+
+.social-media-icon:hover {
+  background-color: $secondary-text-color;
+  border: 2px solid $secondary-text-color;
+}
+
+.landing-navigation-display {
   .main-navigation--list {
     display: none;
   }
-  .portfolio-container {
-    grid-template-columns: 1fr;
+
+  .main-navigation--menu-toggle-button {
+    display: flex;
   }
 
-  .portfolio-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    box-shadow: (5px 5px 10px black);
-  }
-
-  .portfolio-card--overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: $primary-background-color;
-    overflow: hidden;
-    width: 100%;
-    height: 0;
-    transition: 0.5s ease;
-  }
-
-  .portfolio-card:hover .portfolio-card--overlay {
-    height: 100%;
-  }
-
-  .portfolio-card--overlay-text {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .portfolio-card--overlay-button {
-    position: absolute;
-    background-color: transparent;
-    border-radius: 20px;
-    border: $primary-border;
-    padding: 1rem;
-    color: $primary-text-color;
-    top: 70%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 1.2rem;
-  }
-
-  .portfolio-card--overlay-button:hover {
-    background-color: white;
+  .current-page--link {
     color: $secondary-text-color;
   }
 }
 
-@media (min-width: 651px) {
-  .main-navigation--menu-toggle-button {
-    display: none;
-  }
-
-  .portfolio-container {
-    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-    padding: 5rem;
+  .portfolio-card-container {
+    padding: 0.5rem;
+    //grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: 1fr;
+    max-width: 1400px;
+    justify-self: center;
   }
 
   .portfolio-card {
     position: relative;
     width: 100%;
     height: 100%;
-    box-shadow: (5px 5px 10px black);
+    box-shadow: (5px 5px 10px darkgrey);
   }
 
   .portfolio-card--overlay {
@@ -446,7 +501,9 @@ body {
     color: white;
     font-size: 20px;
     position: absolute;
-    top: 50%;
+    width:100%;
+    max-width: 40ch;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -455,8 +512,9 @@ body {
   }
 
   .portfolio-card--overlay-description {
-    padding: 2rem;
+    padding: 1.2rem 0;
     line-height: 1.8rem;
+    width:100%;
   }
 
   .portfolio-card--overlay-text-title {
@@ -466,9 +524,9 @@ body {
   .portfolio-card--overlay-button {
     position: absolute;
     text-decoration: none;
+    font-weight: bold;
     background-color: transparent;
-    border-radius: 20px;
-    border: $primary-border;
+    border: 2px solid $secondary-text-color;
     padding: 1rem;
     color: $primary-text-color;
     top: 80%;
@@ -481,7 +539,138 @@ body {
   }
 
   .portfolio-card--overlay-button:hover {
-    background-color: white;
-    color: $secondary-text-color;
+    background-color: $secondary-text-color;
+    color: $primary-text-color;
+  }
+
+@media (max-width: 1120px) {
+  .main-navigation--list {
+    display: none;
+  }
+}
+//  .portfolio-card-container {
+//    padding: 2rem;
+//    grid-template-columns: 1fr;
+//    justify-self: center;
+//  }
+//
+//  .portfolio-card {
+//    position: relative;
+//    width: 100%;
+//    height: 100%;
+//    box-shadow: (5px 5px 10px darkgrey);
+//  }
+//
+//  .portfolio-card--overlay {
+//    position: absolute;
+//    bottom: 0;
+//    left: 0;
+//    right: 0;
+//    background-color: $primary-background-color;
+//    overflow: hidden;
+//    width: 100%;
+//    height: 0;
+//    transition: 0.5s ease;
+//  }
+//
+//  .portfolio-card:hover .portfolio-card--overlay {
+//    height: 100%;
+//  }
+//
+//  .portfolio-card--overlay-text {
+//    color: white;
+//    font-size: 20px;
+//    position: absolute;
+//    top: 25%;
+//    left: 50%;
+//    -webkit-transform: translate(-50%, -50%);
+//    -ms-transform: translate(-50%, -50%);
+//    transform: translate(-50%, -50%);
+//    text-align: center;
+//  }
+//
+//  .portfolio-card--overlay-button {
+//    position: absolute;
+//    background-color: transparent;
+//    border: 2px solid $secondary-text-color;
+//    padding: 1rem;
+//    color: $primary-text-color;
+//    top: 70%;
+//    left: 50%;
+//    -webkit-transform: translate(-50%, -50%);
+//    -ms-transform: translate(-50%, -50%);
+//    transform: translate(-50%, -50%);
+//    text-align: center;
+//    font-size: 1.2rem;
+//  }
+//
+//  .portfolio-card--overlay-button:hover {
+//    background-color: $secondary-text-color;
+//    color: $primary-text-color;
+//  }
+//}
+//
+//.contact {
+//  display: flex;
+//  width: 100%;
+//  justify-content: center;
+//}
+//
+//.contact-form {
+//  display: flex;
+//  flex-direction: column;
+//  justify-content: start;
+//  padding: 3rem 1rem;
+//  font-size: 1.5rem;
+//  width: 100%;
+//  max-width: 900px;
+//}
+//
+//.contact-form--label {
+//  display: none;
+//}
+//
+//.contact-form--input {
+//  width: 100%;
+//  height: 3rem;
+//  border: 2px solid $primary-background-color;
+//  background-color: $form-input-background-color;
+//  color: $form-input-text-color;
+//  margin-bottom: 0.5rem;
+//  padding-left: 0.5rem;
+//  font-size: 1.2rem;
+//  font-family: $primary-font;
+//}
+//
+//.contact-form--message {
+//  width: 100%;
+//  font-size: 1.2rem;
+//  border: 2px solid $primary-background-color;
+//  background-color: $form-input-background-color;
+//  color: $form-input-text-color;
+//  font-family: $primary-font;
+//  padding: 0.5rem;
+//  margin-bottom: 0.5rem;
+//}
+//
+//.contact-form--submit-button {
+//  background-color: $form-input-background-color;
+//  border-radius: 0;
+//  border: transparent;
+//  height: 3rem;
+//  font-size: 1.2rem;
+//  align-self: flex-end;
+//  padding: 0;
+//  vertical-align: center;
+//  width: 10rem;
+//}
+
+@media (min-width: 1121px) {
+  .main-navigation--menu-toggle-button {
+    display: none;
+  }
+
+  .main-navigation--logo {
+    font-size: 2rem;
   }
 }

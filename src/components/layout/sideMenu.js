@@ -15,7 +15,9 @@ const SideMenu = ({ sideMenuToggle, currentPage }) => {
           <Link
             to="/"
             className={
-              currentPage === "index" ? "side-menu--link current-page--side-menu-link" : "side-menu--link"
+              currentPage === "index"
+                ? "side-menu--link current-page--side-menu-link"
+                : "side-menu--link"
             }
           >
             Home
@@ -23,19 +25,35 @@ const SideMenu = ({ sideMenuToggle, currentPage }) => {
         </li>
         <li className="side-menu--list-items">
           <Link
-            to="/portfolio"
+            to="/about"
             className={
-              currentPage === "portfolio" ? "side-menu--link current-page--side-menu-link" : "side-menu--link"
+              currentPage === "about"
+                ? "side-menu--link current-page--side-menu-link"
+                : "side-menu--link"
             }
           >
-            Portfolio
+            About
+          </Link>
+        </li>
+        <li className="side-menu--list-items">
+          <Link
+            to="/portfolio"
+            className={
+              currentPage === "portfolio"
+                ? "side-menu--link current-page--side-menu-link"
+                : "side-menu--link"
+            }
+          >
+            Work
           </Link>
         </li>
         <li className="side-menu--list-items">
           <Link
             to="/blog"
             className={
-              currentPage === "blog" ? "side-menu--link current-page--side-menu-link" : "side-menu--link"
+              currentPage === "blog"
+                ? "side-menu--link current-page--side-menu-link"
+                : "side-menu--link"
             }
           >
             Blog
@@ -45,7 +63,9 @@ const SideMenu = ({ sideMenuToggle, currentPage }) => {
           <Link
             to="/contact"
             className={
-              currentPage === "contact" ? "side-menu--link current-page--side-menu-link" : "side-menu--link"
+              currentPage === "contact"
+                ? "side-menu--link current-page--side-menu-link"
+                : "side-menu--link"
             }
           >
             Contact

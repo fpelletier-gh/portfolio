@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react"
 //import { Link } from "gatsby"
 import MainNavigation from "./layout/mainNavigation"
-import BackgroundSection from "./layout/backgroundSection"
+import { useScrollPosition } from "./hooks/useScrollPosition"
 import "./layout.scss"
 import Footer from "./layout/footer"
 import SideMenu from "./layout/sideMenu"
 import Backdrop from "./layout/backdrop"
 
-const Layout = ({ children, currentPage, pageMainHeader }) => {
+const Layout = ({ children, currentPage }) => {
   const [sideMenuToggle, setSideMenuToggle] = useState(false)
+  const [hideOnScroll, setHideOnScroll] = useState(true)
+
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      const isShow = currPos.y > prevPos.y
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+    },
+    [hideOnScroll]
+  )
 
   const handleSideMenuToggleButton = () => {
     setSideMenuToggle(!sideMenuToggle)
@@ -27,41 +36,20 @@ const Layout = ({ children, currentPage, pageMainHeader }) => {
   }, [sideMenuToggle])
 
   return (
-    <div
-      className={
-        currentPage === "index"
-          ? "background-image"
-          : "background-image background-image--small"
-      }
-    >
+    <div className="site-container">
       {sideMenuToggle ? (
         <Backdrop handleBackdropClick={handleBackdropClick} />
       ) : null}
       <SideMenu currentPage={currentPage} sideMenuToggle={sideMenuToggle} />
-      <div
-        className={
-          currentPage === "index"
-            ? "header-container background-image--big"
-            : "header-container background-image--small"
-        }
-      >
-        <MainNavigation
-          title=""
-          currentPage={currentPage}
-          handleSideMenuToggleButton={handleSideMenuToggleButton}
-        />
-        {currentPage === "index" ? (
-          children
-        ) : (
-          <h1 className="secondary-header">{pageMainHeader}</h1>
-        )}
-      </div>
-      {currentPage === "index" ? null : (
-        <div className="main-section--grid">
-          {children}
-          <Footer />
-        </div>
-      )}
+      <MainNavigation
+        title=""
+        currentPage={currentPage}
+        sideMenuToggle={sideMenuToggle}
+        handleSideMenuToggleButton={handleSideMenuToggleButton}
+        hideOnScroll={hideOnScroll}
+      />
+      {children}
+      {currentPage === "index" ? null : <Footer />}
     </div>
   )
 }

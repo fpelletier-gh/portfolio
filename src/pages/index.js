@@ -10,12 +10,12 @@ const Index = () => {
       <main className="landing-page">
         <div className="landing-page--center-section">
           <h1 className="primary-header grid-area-primary-header">
-            I <span className="secondary-text-color">Build</span>
+            Hi I'm <span className="secondary-text-color">Francis</span>,
           </h1>
           <h1 className="primary-header grid-area-secondary-header">
-            And <span className="secondary-text-color">Design</span>
+            A <span className="secondary-text-color">Frontend Developer</span>
           </h1>
-          <h2 className="header">Useful Things for the Web</h2>
+          <h2 className="header">Who Love to Build Useful Things for the Web</h2>
           <Link
             to="/portfolio"
             className="primary-button hvr-sweep-to-right"

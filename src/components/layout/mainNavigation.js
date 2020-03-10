@@ -1,12 +1,33 @@
 import React from "react"
-import SideMenuToggleButton from './sideMenuToggleButton'
+import SideMenuToggleButton from "./sideMenuToggleButton"
 import { Link } from "gatsby"
 
-const MainNavigation = ({ currentPage, handleSideMenuToggleButton }) => {
+const MainNavigation = ({
+  currentPage,
+  sideMenuToggle,
+  handleSideMenuToggleButton,
+  hideOnScroll,
+}) => {
   return (
-    <nav className="main-navigation">
-      <div className="main-navigation--logo"><Link to='/' className='primary-button'>Francis <span className='secondary-text-color'>Pelletier</span></Link></div>
-      <SideMenuToggleButton handleSideMenuToggleButton={handleSideMenuToggleButton}/>
+    <nav
+      className={
+        currentPage === "index"
+          ? "main-navigation landing-navigation-display"
+          : sideMenuToggle
+          ? "main-navigation show-main-navigation"
+          : hideOnScroll
+          ? "main-navigation show-main-navigation main-navigation-box-shadow"
+          : "main-navigation hide-main-navigation"
+      }
+    >
+      <div className="main-navigation--logo">
+        <Link to="/about" className="primary-button" title="About me">
+          Francis <span className="secondary-text-color">Pelletier</span>
+        </Link>
+      </div>
+      <SideMenuToggleButton
+        handleSideMenuToggleButton={handleSideMenuToggleButton}
+      />
       <ul className="main-navigation--list">
         <li
           className={
@@ -21,13 +42,24 @@ const MainNavigation = ({ currentPage, handleSideMenuToggleButton }) => {
         </li>
         <li
           className={
+            currentPage === "about"
+              ? "main-navigation--list-item current-page--link"
+              : "main-navigation--list-item"
+          }
+        >
+          <Link to="/about" className="primary-button">
+            About
+          </Link>
+        </li>
+        <li
+          className={
             currentPage === "portfolio"
               ? "main-navigation--list-item current-page--link"
               : "main-navigation--list-item"
           }
         >
           <Link to="/portfolio" className="primary-button">
-            Portfolio
+            Work
           </Link>
         </li>
         <li
