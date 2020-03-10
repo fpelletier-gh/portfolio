@@ -7,6 +7,13 @@ const Footer = () => {
   return (
     <footer className="main-section--footer">
       <div className="footer-social-media--link">
+        <a href="https://github.com/fpelletier-gh/" title="Github">
+          <img
+            src={githubIcon}
+            alt="Twitter Icon"
+            className="social-media-icon"
+          />
+        </a>
         <a href="https://twitter.com/FrankPellet" title="Twitter">
           <img
             src={twitterIcon}
@@ -19,13 +26,6 @@ const Footer = () => {
           alt="Twitter Icon"
           className="social-media-icon"
         />
-        <a href="https://github.com/fpelletier-gh/" title="Github">
-          <img
-            src={githubIcon}
-            alt="Twitter Icon"
-            className="social-media-icon"
-          />
-        </a>
       </div>
       <div className="footer-copywright-text">Francis Pelletier©2020</div>
     </footer>
