@@ -1,0 +1,54 @@
+.portfolio-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 25rem 1fr;
+  grid-template-areas:
+    "portfolio-header"
+    "portfolio-card-container";
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  background-color: $secondary-background-color;
+  justify-content: center;
+}
+
+.portfolio-header {
+  grid-area: portfolio-header;
+  background-color: $secondary-background-color;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.portfolio-header-title {
+  color: $portfolio-header-title-color;
+  border-bottom: $secondary-border;
+  font-size: 3rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.portfolio-header-subtitle {
+  color: $portfolio-header-title-color;
+  font-size: 1.5rem;
+  padding-top: 5rem;
+  text-align: center;
+}
+
+.portfolio-card-container {
+  grid-area: portfolio-card-container;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+}
+
+.portfolio-image {
+  width: 100%;
+  height: auto;
+}
+

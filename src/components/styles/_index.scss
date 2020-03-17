@@ -1,0 +1,117 @@
+.landing-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem 1fr;
+  grid-template-areas:
+    "."
+    "main-section";
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing-page--center-section {
+  grid-area: main-section;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "primary-header"
+    "secondary-header"
+    "header"
+    "portfolio";
+  grid-row-gap: 0.5rem;
+  z-index: 20;
+}
+
+.primary-header {
+  color: $primary-text-color;
+  font-size: $primary-header-font-size;
+  letter-spacing: 0.1rem;
+  align-self: center;
+}
+
+.grid-area-primary-header {
+  grid-area: primary-header;
+  align-self: left;
+}
+
+.grid-area-secondary-header {
+  grid-area: secondary-header;
+}
+
+.header {
+  grid-area: header;
+  color: $primary-text-color;
+  font-size: $header-font-size;
+  letter-spacing: 0.1rem;
+  align-self: center;
+  text-align: center;
+}
+
+.hvr-sweep-to-right {
+  border-radius: $button-border-radius;
+  border: $primary-button-border;
+  color: $secondary-text-color;
+  padding: 1rem;
+  width: 15rem;
+  height: 5rem;
+  font-size: 2rem;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $secondary-text-color;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-sweep-to-right:hover,
+.hvr-sweep-to-right:focus,
+.hvr-sweep-to-right:active {
+  color: $primary-background-color;
+}
+
+.hvr-sweep-to-right:hover:before,
+.hvr-sweep-to-right:focus:before,
+.hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.secondary-text-color {
+  color: $secondary-text-color;
+}
+
+.secondary-header {
+  color: $primary-text-color;
+  font-size: $primary-header-font-size;
+  letter-spacing: $primary-letter-spacing;
+}
+
+
