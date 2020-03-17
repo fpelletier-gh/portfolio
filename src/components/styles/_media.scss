@@ -1,0 +1,15 @@
+@media (max-width: 1120px) {
+  .main-navigation--list {
+    display: none;
+  }
+}
+
+@media (min-width: 1121px) {
+  .main-navigation--menu-toggle-button {
+    display: none;
+  }
+
+  .main-navigation--logo {
+    font-size: 2rem;
+  }
+}

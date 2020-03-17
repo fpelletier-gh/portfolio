@@ -114,4 +114,17 @@
   letter-spacing: $primary-letter-spacing;
 }
 
+.landing-navigation-display {
+  .main-navigation--list {
+    display: none;
+  }
+
+  .main-navigation--menu-toggle-button {
+    display: flex;
+  }
+
+  .current-page--link {
+    color: $secondary-text-color;
+  }
+}
 
