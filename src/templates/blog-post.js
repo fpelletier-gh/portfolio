@@ -11,41 +11,54 @@ const BlogPostTemplate = props => {
   const { previous, next } = props.pageContext
 
   return (
-    <Layout location={props.location} title={siteTitle}>
+    <Layout currentPage="blog" location={props.location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <article>
-        <header>
-          <h1>{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
-      </article>
+      <main className="blog-post--container">
+        <article className="blog-post--main-section">
+          <header className="blog-post--main-header">
+            <h1>{post.frontmatter.title}</h1>
+            <p>{post.frontmatter.date}</p>
+          </header>
+          <section
+            className="blog-post--html"
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+          <hr />
+          <footer>
+            <Bio />
+          </footer>
+        </article>
 
-      <nav>
-        <ul>
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+        <nav>
+          <ul className="blog-post--footer-nav">
+            <li>
+              {previous && (
+                <Link
+                  to={previous.fields.slug}
+                  rel="prev"
+                  className="primary-button blog-post--nav-button"
+                >
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link
+                  to={next.fields.slug}
+                  rel="next"
+                  className="primary-button blog-post--nav-button"
+                >
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </main>
     </Layout>
   )
 }
