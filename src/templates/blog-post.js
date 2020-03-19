@@ -18,7 +18,7 @@ const BlogPostTemplate = props => {
       />
       <main className="blog-post--container">
         <article className="blog-post--main-section">
-          <header className="blog-post--main-header">
+          <header>
             <h1>{post.frontmatter.title}</h1>
             <p>{post.frontmatter.date}</p>
           </header>
