@@ -1,4 +1,15 @@
-@media (max-width: 1120px) {
+@media(max-width: 699px) {
+  .main-navigation--list {
+    display: none;
+  }
+
+}
+
+@media (min-width: 700px) {
+  .portfolio-card--article {
+    flex-direction: row;
+  }
+
   .main-navigation--list {
     display: none;
   }
