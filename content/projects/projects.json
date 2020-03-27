@@ -2,7 +2,7 @@
   {
     "title": "Note",
     "description": "A simple open source note application",
-    "image": "note-card.jpg",
+    "image": "note-card.png",
     "alt": "Note app",
     "siteUrl": "https://francisnoteapp.netlify.com/",
     "githubUrl": "https://github.com/fpelletier-gh/note-app",
