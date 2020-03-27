@@ -1,14 +1,5 @@
 [
   {
-    "title": "Portfolio",
-    "description": "This website was built with gatsby",
-    "image": "portfolio-card.png",
-    "alt": "Portfolio website",
-    "siteUrl": "https://francisnoteapp.netlify.com/",
-    "githubUrl": "https://github.com/fpelletier-gh/portfolio",
-    "tag": ["Gatsby", "Graphql", "Javascript", "CSS"]
-  },
-  {
     "title": "Note",
     "description": "A simple open source note application",
     "image": "note-card.jpg",
@@ -25,5 +16,14 @@
     "siteUrl": "https://boxshadowgenerator.netlify.com/",
     "githubUrl": "https://github.com/fpelletier-gh/box-shadow-generator",
     "tag": ["Javascript", "CSS"]
+  },
+  {
+    "title": "Portfolio",
+    "description": "This website was built with gatsby",
+    "image": "portfolio-card.png",
+    "alt": "Portfolio website",
+    "siteUrl": "https://francisnoteapp.netlify.com/",
+    "githubUrl": "https://github.com/fpelletier-gh/portfolio",
+    "tag": ["Gatsby", "Graphql", "Javascript", "CSS"]
   }
 ]

@@ -28,7 +28,6 @@ const Portfolio = () => {
   `)
 
   const projects = data.allProjectCard.nodes
-  console.log(projects)
   return (
     <Layout currentPage="portfolio" pageMainHeader="Portfolio">
       <main className="portfolio-container">
