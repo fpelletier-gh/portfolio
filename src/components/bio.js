@@ -33,20 +33,20 @@ const Bio = () => {
   const { author, social } = data.site.siteMetadata
   return (
     <div className="blog-post--bio">
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
-      />
-      <div className="blog-post--bio-spacer"></div>
+      {/* <Image */}
+      {/*   fixed={data.avatar.childImageSharp.fixed} */}
+      {/*   alt={author} */}
+      {/*   imgStyle={{ */}
+      {/*     borderRadius: `50%`, */}
+      {/*   }} */}
+      {/* /> */}
+      {/* <div className="blog-post--bio-spacer"></div> */}
       <p className="blog-post--main-section">
         Written by <strong>{author}</strong>
         {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          Follow me on Twitter
-        </a>
+        {/* <a href={`https://twitter.com/${social.twitter}`}> */}
+        {/*   Follow me on Twitter */}
+        {/* </a> */}
       </p>
     </div>
   )

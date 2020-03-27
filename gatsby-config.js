@@ -8,15 +8,6 @@ module.exports = {
       twitter: `@FrankPellet`,
       github: `fpelletier-gh`,
     },
-    projects: [
-      {
-        title: `Note App`,
-        description: `A simple open source note application`,
-        imageUrl: `../images/note-app-img.jpg`,
-        siteUrl: `https://francisnoteapp.netlify.com/`,
-        githubUrl: `https://github.com/fpelletier-gh/note-app`
-      }
-    ]
   },
   plugins: [
     {

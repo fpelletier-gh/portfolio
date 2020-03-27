@@ -1,26 +1,46 @@
-@media(max-width: 699px) {
+@media (max-width: 699px) {
   .main-navigation--list {
     display: none;
   }
-
 }
 
 @media (min-width: 700px) {
   .portfolio-card--article {
     flex-direction: row;
+    height: 280px;
   }
 
   .main-navigation--list {
     display: none;
   }
+
+  .main-navigation--logo {
+    font-size: 2rem;
+  }
+
+  .primary-header {
+    font-size: 3.5rem;
+  }
+
+  .header {
+    font-size: 2rem;
+  }
 }
 
-@media (min-width: 1121px) {
+@media (min-width: 900px) {
   .main-navigation--menu-toggle-button {
     display: none;
   }
 
-  .main-navigation--logo {
-    font-size: 2rem;
+  .main-navigation--list {
+    display: flex;
+  }
+
+  .primary-header {
+    font-size: 5rem;
+  }
+
+  .header {
+    font-size: 3rem;
   }
 }

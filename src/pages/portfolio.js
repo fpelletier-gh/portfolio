@@ -6,30 +6,29 @@ import Img from "gatsby-image"
 const Portfolio = () => {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      file(relativePath: { eq: "note-app-img-landing.jpg" }) {
-        childImageSharp {
-          # Specify the image processing specifications right in the query.
-          fluid {
-            ...GatsbyImageSharpFluid
+      allProjectCard {
+        nodes {
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
-        }
-      }
-      site {
-        siteMetadata {
-          projects
+          alt
+          description
+          githubUrl
+          id
+          siteUrl
+          title
+          tag
         }
       }
     }
   `)
 
-  const {
-    title,
-    description,
-    imageUrl,
-    siteUrl,
-    githubUrl,
-  } = data.site.siteMetadata.projects
-  console.log(title, description, imageUrl, siteUrl, githubUrl)
+  const projects = data.allProjectCard.nodes
+  console.log(projects)
   return (
     <Layout currentPage="portfolio" pageMainHeader="Portfolio">
       <main className="portfolio-container">
@@ -40,47 +39,41 @@ const Portfolio = () => {
           </h3>
         </header>
         <section className="portfolio-card-container">
-          <article className="portfolio-card--article">
-            <div className="portfolio-card">
-              <Img
-                fluid={data.file.childImageSharp.fluid}
-                alt="A corgi smiling happily"
-                className="portfolio-image"
-              />
-              <div className="portfolio-card--overlay">
-                <div className="portfolio-card--overlay-text">
-                  <h3 className="portfolio-card--overlay-text-title">
-                    Note-app
-                  </h3>
-                  <p className="portfolio-card--overlay-description">
-                    A open source note taking Progressive Web Application build
-                    with Gatsby
-                  </p>
+          {projects.map(project => (
+            <article key={project.id} className="portfolio-card--article">
+              <div className="portfolio-card">
+                <Img
+                  fluid={project.image.childImageSharp.fluid}
+                  alt="A corgi smiling happily"
+                  className="portfolio-image"
+                />
+                <div className="portfolio-card--overlay">
+                  <div className="portfolio-card--overlay-text">
+                    <h3 className="portfolio-card--overlay-text-title">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <a
+                    href={project.siteUrl}
+                    className="primary button portfolio-card--overlay-button"
+                  >
+                    Go to site
+                  </a>
                 </div>
-                <a
-                  href="https://musing-benz-14f443.netlify.com/"
-                  className="primary button portfolio-card--overlay-button"
-                >
-                  Go to site
-                </a>
               </div>
-            </div>
-            <div className="portfolio-card--description blog-post--main-section">
-              <h1>Note app</h1>
-              <p>
-                A open source note taking Progressive Web Application build with
-                Gatsby
-              </p>
-              <ul>
-                <li>description</li>
-                <li>description</li>
-                <li>description</li>
-                <li>description</li>
-                <li>description</li>
-                <li>description</li>
-              </ul>
-            </div>
-          </article>
+              <div className="portfolio-card--description blog-post--main-section">
+                <h1>{project.title}</h1>
+                <p className="flex-stretch">{project.description}</p>
+                <p>Technology: {project.tag.join(", ")}</p>
+                <div className="portfolio-card--link">
+                  <a href={project.githubUrl} className="padding-right">
+                    View on github
+                  </a>
+                  <a href={project.siteUrl}>Go to site</a>
+                </div>
+              </div>
+            </article>
+          ))}
         </section>
       </main>
     </Layout>

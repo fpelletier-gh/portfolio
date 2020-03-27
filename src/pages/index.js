@@ -18,7 +18,7 @@ const Index = () => {
           <h2 className="header">Who Love to Build Useful Things for the Web</h2>
           <Link
             to="/portfolio"
-            className="primary-button hvr-sweep-to-right"
+            className="primary-button hvr-sweep-to-right justify-center "
           >
             My Work
           </Link>
